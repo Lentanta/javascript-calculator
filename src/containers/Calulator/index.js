@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 import { connect } from 'react-redux';
-import { clear, numberInput } from '../../redux/action/calulator';
+import { clear, numberInput, operatorInput, decimalInput, calculate } from '../../redux/action/calulator';
 
 class Calculator extends React.Component {
   constructor(props) {
@@ -9,15 +9,15 @@ class Calculator extends React.Component {
   }
 
   handleNumberInput = (e) => {
-    this.props.dispatch(numberInput(e.target.dataset.value))
+    this.props.dispatch(numberInput(e.target.dataset.value));
   };
 
   handleOperatorInput = (e) => {
-
+    this.props.dispatch(operatorInput(e.target.dataset.value));
   };
 
   handleDecimalInput = (e) => {
-
+    this.props.dispatch(decimalInput(e.target.dataset.value));
   };
 
   handleClear = () => {
@@ -25,15 +25,16 @@ class Calculator extends React.Component {
   };
 
   handleCalulate = () => {
-
+    this.props.dispatch(calculate());
   };
 
   render() {
+    console.log(this.props.calculator.display)
     return (
       <div className='calculator-component'>
         <table className='calculator-container'>
           <tr>
-            <th colSpan='4' className='equation'>0</th>
+            <th colSpan='4' className='equation'>{this.props.calculator.equation}</th>
           </tr>
           <tr>
             <td colSpan='4' id='display' className='display'>{this.props.calculator.display}</td>

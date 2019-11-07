@@ -6,7 +6,7 @@ export const clear = () => {
   };
 };
 
-export const calulate = () => {
+export const calculate = () => {
   return {
     type: CALCULATE,
   };
